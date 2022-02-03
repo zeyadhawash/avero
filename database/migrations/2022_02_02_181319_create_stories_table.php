@@ -16,8 +16,8 @@ class CreateStoriesTable extends Migration
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('influencer_id');
-            $table->string('stories');
-            $table->integer('Views')->nullable();
+            $table->string('story');
+            $table->integer('views')->nullable();
             $table->foreign('influencer_id')->references('id')->on('influencers')
             ->onDelete('cascade');
             $table->timestamps();

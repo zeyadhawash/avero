@@ -12,7 +12,7 @@ class Influencer extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name', 'email','password',  'picture', 'Country','Reach','Age','Following','phone_number','photos'
+        'name', 'email','password',  'picture', 'country','categories','interesting','reach','age','followers','phone_number','photos'
     ];
     protected $hidden = [
         'password',
@@ -21,6 +21,7 @@ class Influencer extends Model
 
     protected $casts = [
         'photos' => 'array',
+        'categories' => 'array',
         'email_verified_at' => 'datetime',
     ];
 

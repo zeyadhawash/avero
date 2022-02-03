@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Story extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'influencer_id','stories','Views',];
+    protected $fillable = [ 'influencer_id','story','views',];
 
     public function Influencer()
     {

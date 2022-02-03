@@ -20,11 +20,13 @@ class CreateInfluencersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('picture');
-            $table->longText('Country');
-            $table->longText('Reach')->nullable();
-            $table->json('photos')->nullable();;
-            $table->integer('Age');
-            $table->integer('Following')->nullable();
+            $table->longText('country');
+            $table->json('categories')->nullable();
+            $table->string('interesting');
+            $table->longText('reach')->nullable();
+            $table->json('photos')->nullable();
+            $table->integer('age');
+            $table->integer('followers')->nullable();
             $table->integer('phone_number')->nullable();
             $table->softDeletes();
             $table->rememberToken();

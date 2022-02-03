@@ -17,7 +17,7 @@ class CreateInfluencerServiceTable extends Migration
             $table->id();
             $table->unsignedBigInteger('influencer_id');
             $table->unsignedBigInteger('service_id');
-            $table->boolean('Available');
+            $table->boolean('available')->default(1);
             $table->foreign('influencer_id')->references('id')->on('influencers')
             ->onDelete('cascade');
             $table->foreign('service_id')->references('id')->on('services')
