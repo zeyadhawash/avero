@@ -48,8 +48,10 @@ class InfluencerController extends BaseController
             'email'=>'required',
             'password'=>'required',
             'picture'=>'required',
-            'Country'=>'required',
-            'Age'=>'required',
+            'country'=>'required',
+            'categories' =>'required',
+            'interesting' =>'string',
+            'age'=>'required',
             'phone_number'=>'required',
 
 
@@ -65,10 +67,11 @@ class InfluencerController extends BaseController
         $newPhoto = time().$picture->getClientOriginalName();
         $picture->move('uploads/Influence',$newPhoto);
 
-        $user = Auth::user();
-        $input['user_id'] = $user->id;
+        
         $input['picture'] = 'uploads/Influence/'.$newPhoto;
         $input['photos']=  json_encode($request->photos);
+        $input['categories']=  json_encode($request->categories);
+        
         $Influencer = Influencer::create($input);
         return $this->sendResponse($Influencer, 'Influencer added Successfully!' );
 
@@ -81,7 +84,8 @@ class InfluencerController extends BaseController
      */
     public function show($id)
     {
-        $Influencer = Influencer::find($id);
+        $Influencer = Influencer::join('influencer_service','influencers.id','influencer_service.influencer_id')->join('services','services.id','influencer_service.service_id')->get();
+        
         if (is_null($Influencer)) {
             return $this->sendError('influencer not found!' );
         }

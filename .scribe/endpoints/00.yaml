@@ -8,7 +8,7 @@ endpoints:
       - POST
     uri: api/register
     metadata:
-      title: 'Create a user'
+      title: 'Register in the user.'
       description: ''
       authenticated: false
       custom: []
@@ -20,26 +20,35 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: ''
+        description: 'The name of the  user.'
         required: true
-        example: aspernatur
+        example: testuser
         type: string
         custom: []
       email:
         name: email
-        description: ''
+        description: 'The email of the  user.'
         required: true
-        example: eaque
+        example: testuser@example.com
         type: string
         custom: []
       password:
         name: password
-        description: ''
+        description: 'The password of the  user.'
         required: true
-        example: modi
+        example: secret
         type: string
         custom: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "user": "{ email:testuser@example.com,name :testuser,passwor:secret }",
+           "token": "...re@23ds&f",
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -60,14 +69,14 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: quos
+        example: impedit
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: dolor
+        example: corrupti
         type: string
         custom: []
     responses: []

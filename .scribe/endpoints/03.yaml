@@ -23,7 +23,7 @@ endpoints:
         name: stories
         description: ''
         required: false
-        example: quas
+        example: doloremque
         type: string
         custom: []
     responses: []
@@ -46,7 +46,7 @@ endpoints:
         name: id
         description: 'The ID of the Story.'
         required: true
-        example: 2
+        example: 14
         type: integer
         custom: []
     queryParameters: []
@@ -79,10 +79,36 @@ endpoints:
         name: id
         description: 'The ID of the Story.'
         required: true
-        example: 1
+        example: 4
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
     responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/Story
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []

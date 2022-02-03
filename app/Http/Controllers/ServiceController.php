@@ -29,15 +29,16 @@ class ServiceController extends BaseController
 
  /**
      * store  Service
-     *
-     *@bodyParam services string
+     * @authenticated
+     * @bodyParam service string
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
 
     public function store(Request $request)
     {
         $input = $request->all();
         $validator = Validator::make($input,[
-            'services'=>'required',
+            'service'=>'required',
         ]);
 
         if ($validator->fails()) {

@@ -51,21 +51,21 @@ endpoints:
         name: name
         description: ''
         required: false
-        example: vel
+        example: illo
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: false
-        example: et
+        example: ut
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: false
-        example: praesentium
+        example: voluptate
         type: string
         custom: []
       picture:
@@ -75,17 +75,31 @@ endpoints:
         example: null
         type: file
         custom: []
-      Country:
-        name: Country
+      country:
+        name: country
         description: ''
-        required: false
-        example: ipsa
+        required: true
+        example: aut
         type: string
         custom: []
-      Age:
-        name: Age
+      categories:
+        name: categories
+        description: ''
+        required: true
+        example: totam
+        type: string
+        custom: []
+      interesting:
+        name: interesting
         description: ''
         required: false
+        example: rem
+        type: string
+        custom: []
+      age:
+        name: age
+        description: ''
+        required: true
         example: aut
         type: string
         custom: []
@@ -93,7 +107,21 @@ endpoints:
         name: phone_number
         description: ''
         required: false
-        example: nobis
+        example: unde
+        type: string
+        custom: []
+      Country:
+        name: Country
+        description: ''
+        required: false
+        example: repellendus
+        type: string
+        custom: []
+      Age:
+        name: Age
+        description: ''
+        required: false
+        example: alias
         type: string
         custom: []
     responses: []
@@ -116,7 +144,7 @@ endpoints:
         name: id
         description: 'The ID of the Influencer.'
         required: true
-        example: 6
+        example: 11
         type: integer
         custom: []
     queryParameters: []
@@ -150,7 +178,7 @@ endpoints:
         name: id
         description: 'The ID of the Influencer.'
         required: true
-        example: 1
+        example: 8
         type: integer
         custom: []
     queryParameters:
@@ -158,7 +186,7 @@ endpoints:
         name: picture
         description: file
         required: false
-        example: est
+        example: blanditiis
         type: string
         custom: []
     bodyParameters:
@@ -166,49 +194,49 @@ endpoints:
         name: name
         description: ''
         required: false
-        example: dolores
+        example: vitae
         type: string
         custom: []
       email:
         name: email
         description: ''
         required: false
-        example: ipsam
+        example: dolorum
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: false
-        example: vero
+        example: dolores
         type: string
         custom: []
       picture:
         name: picture
         description: ''
         required: true
-        example: corrupti
+        example: est
         type: string
         custom: []
       Country:
         name: Country
         description: ''
         required: false
-        example: ipsum
+        example: eligendi
         type: string
         custom: []
       Age:
         name: Age
         description: ''
         required: false
-        example: alias
+        example: voluptatum
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: false
-        example: sit
+        example: ut
         type: string
         custom: []
     responses: []
@@ -231,7 +259,7 @@ endpoints:
         name: id
         description: 'The ID of the Influencer.'
         required: true
-        example: 1
+        example: 6
         type: integer
         custom: []
     queryParameters: []

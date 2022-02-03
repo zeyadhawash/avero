@@ -22,6 +22,19 @@ class AuthController extends Controller
      *
      *
      */
+
+     /**
+ * Register in the user.
+ *
+ * @bodyParam   email    string  required    The email of the  user.      Example: testuser@example.com
+ * @bodyParam   name    string  required    The name of the  user.      Example: testuser
+ * @bodyParam   password    string  required    The password of the  user.   Example: secret
+ *
+ * @response {
+ *  "user": "{ email:testuser@example.com,name :testuser,passwor:secret }",
+ *  "token": "...re@23ds&f",
+ * }
+ */
     public function register(Request $request) {
         $fields = $request->validate([
             'name' => 'required|string',

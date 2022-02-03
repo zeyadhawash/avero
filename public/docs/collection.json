@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "http:\/\/127.0.0.1:8000"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "afc6d7fb-86f3-4c4c-8d55-558b4cb20717",
+        "_postman_id": "6df4afad-87a8-471b-9021-d34d95521f3f",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -20,7 +20,7 @@
             "description": "\nAPIs for managing   Auth users",
             "item": [
                 {
-                    "name": "Create a user",
+                    "name": "Register in the user.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -41,14 +41,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"aspernatur\",\"email\":\"eaque\",\"password\":\"modi\"}"
+                            "raw": "{\"name\":\"testuser\",\"email\":\"testuser@example.com\",\"password\":\"secret\"}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"user\": \"{ email:testuser@example.com,name :testuser,passwor:secret }\",\n \"token\": \"...re@23ds&f\",\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "login User",
@@ -72,7 +79,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"quos\",\"password\":\"dolor\"}"
+                            "raw": "{\"email\":\"impedit\",\"password\":\"corrupti\"}"
                         },
                         "description": "",
                         "auth": {
@@ -182,32 +189,52 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "vel",
+                                    "value": "illo",
                                     "type": "text"
                                 },
                                 {
                                     "key": "email",
-                                    "value": "et",
+                                    "value": "ut",
                                     "type": "text"
                                 },
                                 {
                                     "key": "password",
-                                    "value": "praesentium",
+                                    "value": "voluptate",
                                     "type": "text"
                                 },
                                 {
-                                    "key": "Country",
-                                    "value": "ipsa",
+                                    "key": "country",
+                                    "value": "aut",
                                     "type": "text"
                                 },
                                 {
-                                    "key": "Age",
+                                    "key": "categories",
+                                    "value": "totam",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "interesting",
+                                    "value": "rem",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "age",
                                     "value": "aut",
                                     "type": "text"
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "nobis",
+                                    "value": "unde",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "Country",
+                                    "value": "repellendus",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "Age",
+                                    "value": "alias",
                                     "type": "text"
                                 },
                                 {
@@ -233,7 +260,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "6",
+                                    "value": "11",
                                     "description": "The ID of the Influencer."
                                 }
                             ]
@@ -283,17 +310,17 @@
                             "query": [
                                 {
                                     "key": "picture",
-                                    "value": "est",
+                                    "value": "blanditiis",
                                     "description": "file",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/Influencer\/:id?picture=est",
+                            "raw": "{{baseUrl}}\/api\/Influencer\/:id?picture=blanditiis",
                             "variable": [
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "8",
                                     "description": "The ID of the Influencer."
                                 }
                             ]
@@ -311,7 +338,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"dolores\",\"email\":\"ipsam\",\"password\":\"vero\",\"picture\":\"corrupti\",\"Country\":\"ipsum\",\"Age\":\"alias\",\"phone_number\":\"sit\"}"
+                            "raw": "{\"name\":\"vitae\",\"email\":\"dolorum\",\"password\":\"dolores\",\"picture\":\"est\",\"Country\":\"eligendi\",\"Age\":\"voluptatum\",\"phone_number\":\"ut\"}"
                         },
                         "description": ""
                     },
@@ -329,7 +356,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "6",
                                     "description": "The ID of the Influencer."
                                 }
                             ]
@@ -423,7 +450,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"services\":\"molestiae\"}"
+                            "raw": "{\"service\":\"exercitationem\"}"
                         },
                         "description": ""
                     },
@@ -441,7 +468,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "13",
+                                    "value": "20",
                                     "description": "The ID of the Service."
                                 }
                             ]
@@ -512,7 +539,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"services\":\"nisi\"}"
+                            "raw": "{\"services\":\"repudiandae\"}"
                         },
                         "description": ""
                     },
@@ -579,7 +606,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"stories\":\"quas\"}"
+                            "raw": "{\"stories\":\"doloremque\"}"
                         },
                         "description": ""
                     },
@@ -597,7 +624,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2",
+                                    "value": "14",
                                     "description": "The ID of the Story."
                                 }
                             ]
@@ -650,7 +677,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "4",
                                     "description": "The ID of the Story."
                                 }
                             ]
@@ -670,6 +697,51 @@
                         "description": ""
                     },
                     "response": []
+                },
+                {
+                    "name": "api\/Story",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/Story",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/Story"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -731,18 +803,18 @@
                             "query": [
                                 {
                                     "key": "status",
-                                    "value": "quo",
+                                    "value": "reprehenderit",
                                     "description": "",
                                     "disabled": false
                                 },
                                 {
                                     "key": "price",
-                                    "value": "ea",
+                                    "value": "molestiae",
                                     "description": "",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/Ticket?status=quo&price=ea"
+                            "raw": "{{baseUrl}}\/api\/Ticket?status=reprehenderit&price=molestiae"
                         },
                         "method": "POST",
                         "header": [
@@ -757,7 +829,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"user_id\":\"similique\",\"influencer_id\":\"explicabo\",\"service_id\":\"qui\",\"payment_method\":\"voluptates\"}"
+                            "raw": "{\"user_id\":\"alias\",\"influencer_id\":\"quod\",\"service_id\":\"illo\",\"payment_method\":\"sit\"}"
                         },
                         "description": ""
                     },
@@ -775,7 +847,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "5",
+                                    "value": "8",
                                     "description": "The ID of the Ticket."
                                 }
                             ]
@@ -828,7 +900,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "3",
                                     "description": "The ID of the Ticket."
                                 }
                             ]
@@ -846,7 +918,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"status\":\"soluta\"}"
+                            "raw": "{\"status\":\"doloribus\"}"
                         },
                         "description": ""
                     },
@@ -864,7 +936,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "19",
                                     "description": "The ID of the Ticket."
                                 }
                             ]

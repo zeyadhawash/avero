@@ -26,8 +26,8 @@
             </style>
 
     <script>
-        var baseUrl = "http://localhost";
-        var useCsrf = Boolean();
+        var baseUrl = "http://127.0.0.1:8000";
+        var useCsrf = Boolean(1);
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
     <script src="../docs/js/tryitout-3.23.0.js"></script>
@@ -75,7 +75,7 @@
                 </li>
                                     <ul id="tocify-subheader-auth-management" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="auth-management-POSTapi-register">
-                        <a href="#auth-management-POSTapi-register">Create a user</a>
+                        <a href="#auth-management-POSTapi-register">Register in the user.</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="auth-management-POSTapi-login">
                         <a href="#auth-management-POSTapi-login">login User</a>
@@ -143,6 +143,9 @@
                                     <li class="tocify-item level-2" data-unique="story-management-DELETEapi-Story--id-">
                         <a href="#story-management-DELETEapi-Story--id-">destroy  story</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="story-management-GETapi-Story">
+                        <a href="#story-management-GETapi-Story">GET api/Story</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-6" class="tocify-header">
@@ -177,7 +180,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: February 2 2022</li>
+        <li>Last updated: February 3 2022</li>
     </ul>
 </div>
 
@@ -191,7 +194,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://localhost</code></pre>
+<pre><code class="language-yaml">http://127.0.0.1:8000</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
@@ -202,7 +205,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     <p>APIs for managing   Auth users</p>
 
-            <h2 id="auth-management-POSTapi-register">Create a user</h2>
+            <h2 id="auth-management-POSTapi-register">Register in the user.</h2>
 
 <p>
 </p>
@@ -215,20 +218,20 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/register" \
+    "http://127.0.0.1:8000/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"aspernatur\",
-    \"email\": \"eaque\",
-    \"password\": \"modi\"
+    \"name\": \"testuser\",
+    \"email\": \"testuser@example.com\",
+    \"password\": \"secret\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://127.0.0.1:8000/api/register"
 );
 
 const headers = {
@@ -237,9 +240,9 @@ const headers = {
 };
 
 let body = {
-    "name": "aspernatur",
-    "email": "eaque",
-    "password": "modi"
+    "name": "testuser",
+    "email": "testuser@example.com",
+    "password": "secret"
 };
 
 fetch(url, {
@@ -251,7 +254,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-register">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;user&quot;: &quot;{ email:testuser@example.com,name :testuser,passwor:secret }&quot;,
+ &quot;token&quot;: &quot;...re@23ds&amp;f&quot;,
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-register"></span>:
@@ -297,30 +310,30 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-register"
-               value="aspernatur"
+               value="testuser"
                data-component="body" hidden>
     <br>
-
+<p>The name of the  user.</p>
         </p>
                 <p>
             <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-register"
-               value="eaque"
+               value="testuser@example.com"
                data-component="body" hidden>
     <br>
-
+<p>The email of the  user.</p>
         </p>
                 <p>
             <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="modi"
+               value="secret"
                data-component="body" hidden>
     <br>
-
+<p>The password of the  user.</p>
         </p>
         </form>
 
@@ -337,19 +350,19 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/login" \
+    "http://127.0.0.1:8000/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"quos\",
-    \"password\": \"dolor\"
+    \"email\": \"impedit\",
+    \"password\": \"corrupti\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://127.0.0.1:8000/api/login"
 );
 
 const headers = {
@@ -358,8 +371,8 @@ const headers = {
 };
 
 let body = {
-    "email": "quos",
-    "password": "dolor"
+    "email": "impedit",
+    "password": "corrupti"
 };
 
 fetch(url, {
@@ -417,7 +430,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-login"
-               value="quos"
+               value="impedit"
                data-component="body" hidden>
     <br>
 
@@ -427,7 +440,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="dolor"
+               value="corrupti"
                data-component="body" hidden>
     <br>
 
@@ -448,7 +461,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/logout" \
+    "http://127.0.0.1:8000/api/logout" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -456,7 +469,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/logout"
+    "http://127.0.0.1:8000/api/logout"
 );
 
 const headers = {
@@ -541,7 +554,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Influencer" \
+    --get "http://127.0.0.1:8000/api/Influencer" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -549,7 +562,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Influencer"
+    "http://127.0.0.1:8000/api/Influencer"
 );
 
 const headers = {
@@ -647,22 +660,26 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/Influencer" \
+    "http://127.0.0.1:8000/api/Influencer" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "name=vel" \
-    --form "email=et" \
-    --form "password=praesentium" \
-    --form "Country=ipsa" \
-    --form "Age=aut" \
-    --form "phone_number=nobis" \
-    --form "picture=@C:\Users\user\AppData\Local\Temp\php8F25.tmp" </code></pre></div>
+    --form "name=illo" \
+    --form "email=ut" \
+    --form "password=voluptate" \
+    --form "country=aut" \
+    --form "categories=totam" \
+    --form "interesting=rem" \
+    --form "age=aut" \
+    --form "phone_number=unde" \
+    --form "Country=repellendus" \
+    --form "Age=alias" \
+    --form "picture=@/private/var/folders/nn/z5xcs9hd4j92hptl5rpc4spc0000gp/T/phpORc3ya" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Influencer"
+    "http://127.0.0.1:8000/api/Influencer"
 );
 
 const headers = {
@@ -672,12 +689,16 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'vel');
-body.append('email', 'et');
-body.append('password', 'praesentium');
-body.append('Country', 'ipsa');
-body.append('Age', 'aut');
-body.append('phone_number', 'nobis');
+body.append('name', 'illo');
+body.append('email', 'ut');
+body.append('password', 'voluptate');
+body.append('country', 'aut');
+body.append('categories', 'totam');
+body.append('interesting', 'rem');
+body.append('age', 'aut');
+body.append('phone_number', 'unde');
+body.append('Country', 'repellendus');
+body.append('Age', 'alias');
 body.append('picture', document.querySelector('input[name="picture"]').files[0]);
 
 fetch(url, {
@@ -743,7 +764,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-Influencer"
-               value="vel"
+               value="illo"
                data-component="body" hidden>
     <br>
 
@@ -753,7 +774,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="POSTapi-Influencer"
-               value="et"
+               value="ut"
                data-component="body" hidden>
     <br>
 
@@ -763,7 +784,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-Influencer"
-               value="praesentium"
+               value="voluptate"
                data-component="body" hidden>
     <br>
 
@@ -779,19 +800,39 @@ fetch(url, {
 
         </p>
                 <p>
-            <b><code>Country</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+            <b><code>country</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
-               name="Country"
+               name="country"
                data-endpoint="POSTapi-Influencer"
-               value="ipsa"
+               value="aut"
                data-component="body" hidden>
     <br>
 
         </p>
                 <p>
-            <b><code>Age</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+            <b><code>categories</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
-               name="Age"
+               name="categories"
+               data-endpoint="POSTapi-Influencer"
+               value="totam"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>interesting</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="interesting"
+               data-endpoint="POSTapi-Influencer"
+               value="rem"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>age</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="age"
                data-endpoint="POSTapi-Influencer"
                value="aut"
                data-component="body" hidden>
@@ -803,7 +844,27 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="POSTapi-Influencer"
-               value="nobis"
+               value="unde"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>Country</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="Country"
+               data-endpoint="POSTapi-Influencer"
+               value="repellendus"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>Age</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="Age"
+               data-endpoint="POSTapi-Influencer"
+               value="alias"
                data-component="body" hidden>
     <br>
 
@@ -824,7 +885,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Influencer/6" \
+    --get "http://127.0.0.1:8000/api/Influencer/11" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -832,7 +893,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Influencer/6"
+    "http://127.0.0.1:8000/api/Influencer/11"
 );
 
 const headers = {
@@ -920,7 +981,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-Influencer--id-"
-               value="6"
+               value="11"
                data-component="url" hidden>
     <br>
 <p>The ID of the Influencer.</p>
@@ -941,29 +1002,29 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/Influencer/1?picture=est" \
+    "http://127.0.0.1:8000/api/Influencer/8?picture=blanditiis" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"dolores\",
-    \"email\": \"ipsam\",
-    \"password\": \"vero\",
-    \"picture\": \"corrupti\",
-    \"Country\": \"ipsum\",
-    \"Age\": \"alias\",
-    \"phone_number\": \"sit\"
+    \"name\": \"vitae\",
+    \"email\": \"dolorum\",
+    \"password\": \"dolores\",
+    \"picture\": \"est\",
+    \"Country\": \"eligendi\",
+    \"Age\": \"voluptatum\",
+    \"phone_number\": \"ut\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Influencer/1"
+    "http://127.0.0.1:8000/api/Influencer/8"
 );
 
 const params = {
-    "picture": "est",
+    "picture": "blanditiis",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -975,13 +1036,13 @@ const headers = {
 };
 
 let body = {
-    "name": "dolores",
-    "email": "ipsam",
-    "password": "vero",
-    "picture": "corrupti",
-    "Country": "ipsum",
-    "Age": "alias",
-    "phone_number": "sit"
+    "name": "vitae",
+    "email": "dolorum",
+    "password": "dolores",
+    "picture": "est",
+    "Country": "eligendi",
+    "Age": "voluptatum",
+    "phone_number": "ut"
 };
 
 fetch(url, {
@@ -1051,7 +1112,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="PUTapi-Influencer--id-"
-               value="1"
+               value="8"
                data-component="url" hidden>
     <br>
 <p>The ID of the Influencer.</p>
@@ -1062,7 +1123,7 @@ fetch(url, {
                 <input type="text"
                name="picture"
                data-endpoint="PUTapi-Influencer--id-"
-               value="est"
+               value="blanditiis"
                data-component="query" hidden>
     <br>
 <p>file</p>
@@ -1073,7 +1134,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="PUTapi-Influencer--id-"
-               value="dolores"
+               value="vitae"
                data-component="body" hidden>
     <br>
 
@@ -1083,7 +1144,7 @@ fetch(url, {
                 <input type="text"
                name="email"
                data-endpoint="PUTapi-Influencer--id-"
-               value="ipsam"
+               value="dolorum"
                data-component="body" hidden>
     <br>
 
@@ -1093,7 +1154,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="PUTapi-Influencer--id-"
-               value="vero"
+               value="dolores"
                data-component="body" hidden>
     <br>
 
@@ -1103,7 +1164,7 @@ fetch(url, {
                 <input type="text"
                name="picture"
                data-endpoint="PUTapi-Influencer--id-"
-               value="corrupti"
+               value="est"
                data-component="body" hidden>
     <br>
 
@@ -1113,7 +1174,7 @@ fetch(url, {
                 <input type="text"
                name="Country"
                data-endpoint="PUTapi-Influencer--id-"
-               value="ipsum"
+               value="eligendi"
                data-component="body" hidden>
     <br>
 
@@ -1123,7 +1184,7 @@ fetch(url, {
                 <input type="text"
                name="Age"
                data-endpoint="PUTapi-Influencer--id-"
-               value="alias"
+               value="voluptatum"
                data-component="body" hidden>
     <br>
 
@@ -1133,7 +1194,7 @@ fetch(url, {
                 <input type="text"
                name="phone_number"
                data-endpoint="PUTapi-Influencer--id-"
-               value="sit"
+               value="ut"
                data-component="body" hidden>
     <br>
 
@@ -1154,7 +1215,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/Influencer/1" \
+    "http://127.0.0.1:8000/api/Influencer/6" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1162,7 +1223,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Influencer/1"
+    "http://127.0.0.1:8000/api/Influencer/6"
 );
 
 const headers = {
@@ -1233,7 +1294,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-Influencer--id-"
-               value="1"
+               value="6"
                data-component="url" hidden>
     <br>
 <p>The ID of the Influencer.</p>
@@ -1258,7 +1319,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Service" \
+    --get "http://127.0.0.1:8000/api/Service" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1266,7 +1327,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Service"
+    "http://127.0.0.1:8000/api/Service"
 );
 
 const headers = {
@@ -1364,19 +1425,19 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/Service" \
+    "http://127.0.0.1:8000/api/Service" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"services\": \"molestiae\"
+    \"service\": \"exercitationem\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Service"
+    "http://127.0.0.1:8000/api/Service"
 );
 
 const headers = {
@@ -1386,7 +1447,7 @@ const headers = {
 };
 
 let body = {
-    "services": "molestiae"
+    "service": "exercitationem"
 };
 
 fetch(url, {
@@ -1448,11 +1509,11 @@ fetch(url, {
         </p>
                         <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
-            <b><code>services</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+            <b><code>service</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
                 <input type="text"
-               name="services"
+               name="service"
                data-endpoint="POSTapi-Service"
-               value="molestiae"
+               value="exercitationem"
                data-component="body" hidden>
     <br>
 
@@ -1473,7 +1534,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Service/13" \
+    --get "http://127.0.0.1:8000/api/Service/20" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1481,7 +1542,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Service/13"
+    "http://127.0.0.1:8000/api/Service/20"
 );
 
 const headers = {
@@ -1569,7 +1630,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-Service--id-"
-               value="13"
+               value="20"
                data-component="url" hidden>
     <br>
 <p>The ID of the Service.</p>
@@ -1590,19 +1651,19 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/Service/1" \
+    "http://127.0.0.1:8000/api/Service/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"services\": \"nisi\"
+    \"services\": \"repudiandae\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Service/1"
+    "http://127.0.0.1:8000/api/Service/1"
 );
 
 const headers = {
@@ -1612,7 +1673,7 @@ const headers = {
 };
 
 let body = {
-    "services": "nisi"
+    "services": "repudiandae"
 };
 
 fetch(url, {
@@ -1693,7 +1754,7 @@ fetch(url, {
                 <input type="text"
                name="services"
                data-endpoint="PUTapi-Service--id-"
-               value="nisi"
+               value="repudiandae"
                data-component="body" hidden>
     <br>
 
@@ -1714,7 +1775,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/Service/1" \
+    "http://127.0.0.1:8000/api/Service/1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1722,7 +1783,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Service/1"
+    "http://127.0.0.1:8000/api/Service/1"
 );
 
 const headers = {
@@ -1818,19 +1879,19 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/Story" \
+    "http://127.0.0.1:8000/api/Story" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"stories\": \"quas\"
+    \"stories\": \"doloremque\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Story"
+    "http://127.0.0.1:8000/api/Story"
 );
 
 const headers = {
@@ -1840,7 +1901,7 @@ const headers = {
 };
 
 let body = {
-    "stories": "quas"
+    "stories": "doloremque"
 };
 
 fetch(url, {
@@ -1906,7 +1967,7 @@ fetch(url, {
                 <input type="text"
                name="stories"
                data-endpoint="POSTapi-Story"
-               value="quas"
+               value="doloremque"
                data-component="body" hidden>
     <br>
 
@@ -1927,7 +1988,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Story/2" \
+    --get "http://127.0.0.1:8000/api/Story/14" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1935,7 +1996,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Story/2"
+    "http://127.0.0.1:8000/api/Story/14"
 );
 
 const headers = {
@@ -2023,7 +2084,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-Story--id-"
-               value="2"
+               value="14"
                data-component="url" hidden>
     <br>
 <p>The ID of the Story.</p>
@@ -2044,7 +2105,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/Story/1" \
+    "http://127.0.0.1:8000/api/Story/4" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2052,7 +2113,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Story/1"
+    "http://127.0.0.1:8000/api/Story/4"
 );
 
 const headers = {
@@ -2123,12 +2184,118 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-Story--id-"
-               value="1"
+               value="4"
                data-component="url" hidden>
     <br>
 <p>The ID of the Story.</p>
             </p>
                     </form>
+
+            <h2 id="story-management-GETapi-Story">GET api/Story</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-Story">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/Story" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/Story"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-Story">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-Story" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-Story"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-Story"></code></pre>
+</span>
+<span id="execution-error-GETapi-Story" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-Story"></code></pre>
+</span>
+<form id="form-GETapi-Story" data-method="GET"
+      data-path="api/Story"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-Story', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-Story"
+                    onclick="tryItOut('GETapi-Story');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-Story"
+                    onclick="cancelTryOut('GETapi-Story');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-Story" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/Story</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-Story" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-Story"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="ticket-management">Ticket management</h1>
 
@@ -2148,7 +2315,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Ticket" \
+    --get "http://127.0.0.1:8000/api/Ticket" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2156,7 +2323,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Ticket"
+    "http://127.0.0.1:8000/api/Ticket"
 );
 
 const headers = {
@@ -2254,27 +2421,27 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/Ticket?status=quo&amp;price=ea" \
+    "http://127.0.0.1:8000/api/Ticket?status=reprehenderit&amp;price=molestiae" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"user_id\": \"similique\",
-    \"influencer_id\": \"explicabo\",
-    \"service_id\": \"qui\",
-    \"payment_method\": \"voluptates\"
+    \"user_id\": \"alias\",
+    \"influencer_id\": \"quod\",
+    \"service_id\": \"illo\",
+    \"payment_method\": \"sit\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Ticket"
+    "http://127.0.0.1:8000/api/Ticket"
 );
 
 const params = {
-    "status": "quo",
-    "price": "ea",
+    "status": "reprehenderit",
+    "price": "molestiae",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -2286,10 +2453,10 @@ const headers = {
 };
 
 let body = {
-    "user_id": "similique",
-    "influencer_id": "explicabo",
-    "service_id": "qui",
-    "payment_method": "voluptates"
+    "user_id": "alias",
+    "influencer_id": "quod",
+    "service_id": "illo",
+    "payment_method": "sit"
 };
 
 fetch(url, {
@@ -2355,7 +2522,7 @@ fetch(url, {
                 <input type="text"
                name="status"
                data-endpoint="POSTapi-Ticket"
-               value="quo"
+               value="reprehenderit"
                data-component="query" hidden>
     <br>
 
@@ -2365,7 +2532,7 @@ fetch(url, {
                 <input type="text"
                name="price"
                data-endpoint="POSTapi-Ticket"
-               value="ea"
+               value="molestiae"
                data-component="query" hidden>
     <br>
 
@@ -2376,7 +2543,7 @@ fetch(url, {
                 <input type="text"
                name="user_id"
                data-endpoint="POSTapi-Ticket"
-               value="similique"
+               value="alias"
                data-component="body" hidden>
     <br>
 
@@ -2386,7 +2553,7 @@ fetch(url, {
                 <input type="text"
                name="influencer_id"
                data-endpoint="POSTapi-Ticket"
-               value="explicabo"
+               value="quod"
                data-component="body" hidden>
     <br>
 
@@ -2396,7 +2563,7 @@ fetch(url, {
                 <input type="text"
                name="service_id"
                data-endpoint="POSTapi-Ticket"
-               value="qui"
+               value="illo"
                data-component="body" hidden>
     <br>
 
@@ -2406,7 +2573,7 @@ fetch(url, {
                 <input type="text"
                name="payment_method"
                data-endpoint="POSTapi-Ticket"
-               value="voluptates"
+               value="sit"
                data-component="body" hidden>
     <br>
 
@@ -2427,7 +2594,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/Ticket/5" \
+    --get "http://127.0.0.1:8000/api/Ticket/8" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2435,7 +2602,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Ticket/5"
+    "http://127.0.0.1:8000/api/Ticket/8"
 );
 
 const headers = {
@@ -2523,7 +2690,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-Ticket--id-"
-               value="5"
+               value="8"
                data-component="url" hidden>
     <br>
 <p>The ID of the Ticket.</p>
@@ -2544,19 +2711,19 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/Ticket/1" \
+    "http://127.0.0.1:8000/api/Ticket/3" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"status\": \"soluta\"
+    \"status\": \"doloribus\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Ticket/1"
+    "http://127.0.0.1:8000/api/Ticket/3"
 );
 
 const headers = {
@@ -2566,7 +2733,7 @@ const headers = {
 };
 
 let body = {
-    "status": "soluta"
+    "status": "doloribus"
 };
 
 fetch(url, {
@@ -2636,7 +2803,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="PUTapi-Ticket--id-"
-               value="1"
+               value="3"
                data-component="url" hidden>
     <br>
 <p>The ID of the Ticket.</p>
@@ -2647,7 +2814,7 @@ fetch(url, {
                 <input type="text"
                name="status"
                data-endpoint="PUTapi-Ticket--id-"
-               value="soluta"
+               value="doloribus"
                data-component="body" hidden>
     <br>
 
@@ -2668,7 +2835,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/Ticket/1" \
+    "http://127.0.0.1:8000/api/Ticket/19" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2676,7 +2843,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/Ticket/1"
+    "http://127.0.0.1:8000/api/Ticket/19"
 );
 
 const headers = {
@@ -2747,7 +2914,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-Ticket--id-"
-               value="1"
+               value="19"
                data-component="url" hidden>
     <br>
 <p>The ID of the Ticket.</p>

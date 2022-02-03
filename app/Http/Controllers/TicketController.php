@@ -81,6 +81,23 @@ class TicketController extends BaseController
     }
 
 
+     /**
+     * show  ticket user
+     *
+     *
+     */
+    public function user_tickets($id)
+    {
+        $user = Auth::user();
+        $Ticket = Ticket::where("user_id","=",$user->id)->get();
+        if (is_null($Ticket)) {
+            return $this->sendError('Ticket not found!' );
+        }
+        return $this->sendResponse(new TicketResource($Ticket), 'Service retireved Successfully!' );
+
+    }
+
+
    /**
      * update  Ticket
      *

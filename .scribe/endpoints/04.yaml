@@ -48,14 +48,14 @@ endpoints:
         name: status
         description: ''
         required: false
-        example: quo
+        example: reprehenderit
         type: string
         custom: []
       price:
         name: price
         description: ''
         required: false
-        example: ea
+        example: molestiae
         type: string
         custom: []
     bodyParameters:
@@ -63,28 +63,28 @@ endpoints:
         name: user_id
         description: ''
         required: false
-        example: similique
+        example: alias
         type: string
         custom: []
       influencer_id:
         name: influencer_id
         description: ''
         required: false
-        example: explicabo
+        example: quod
         type: string
         custom: []
       service_id:
         name: service_id
         description: ''
         required: false
-        example: qui
+        example: illo
         type: string\
         custom: []
       payment_method:
         name: payment_method
         description: ''
         required: false
-        example: voluptates
+        example: sit
         type: string
         custom: []
     responses: []
@@ -107,7 +107,7 @@ endpoints:
         name: id
         description: 'The ID of the Ticket.'
         required: true
-        example: 5
+        example: 8
         type: integer
         custom: []
     queryParameters: []
@@ -141,7 +141,7 @@ endpoints:
         name: id
         description: 'The ID of the Ticket.'
         required: true
-        example: 1
+        example: 3
         type: integer
         custom: []
     queryParameters: []
@@ -150,7 +150,7 @@ endpoints:
         name: status
         description: ''
         required: false
-        example: soluta
+        example: doloribus
         type: string
         custom: []
     responses: []
@@ -173,7 +173,7 @@ endpoints:
         name: id
         description: 'The ID of the Ticket.'
         required: true
-        example: 1
+        example: 19
         type: integer
         custom: []
     queryParameters: []

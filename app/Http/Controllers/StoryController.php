@@ -31,6 +31,13 @@ class StoryController extends Controller
   return $this->sendResponse(StoryResource::collection($Story), 'Story retrieved Successfully!' );
   }
 
+
+  public function index()
+  {
+  $Story = Story::all();
+  return $this->sendResponse(StoryResource::collection($Story), 'Story retrieved Successfully!' );
+  }
+
     /**
      * creat  Story
      *@bodyParam stories string

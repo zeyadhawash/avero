@@ -47,11 +47,11 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
-      services:
-        name: services
+      service:
+        name: service
         description: ''
         required: false
-        example: molestiae
+        example: exercitationem
         type: string
         custom: []
     responses: []
@@ -74,7 +74,7 @@ endpoints:
         name: id
         description: 'The ID of the Service.'
         required: true
-        example: 13
+        example: 20
         type: integer
         custom: []
     queryParameters: []
@@ -117,7 +117,7 @@ endpoints:
         name: services
         description: ''
         required: false
-        example: nisi
+        example: repudiandae
         type: string
         custom: []
     responses: []

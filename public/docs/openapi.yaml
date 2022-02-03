@@ -5,11 +5,11 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'http://127.0.0.1:8000'
 paths:
   /api/register:
     post:
-      summary: 'Create a user'
+      summary: 'Register in the user.'
       description: ''
       parameters:
         -
@@ -26,7 +26,14 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"user\": \"{ email:testuser@example.com,name :testuser,passwor:secret }\",\n \"token\": \"...re@23ds&f\",\n}"
       tags:
         - 'Auth management'
       requestBody:
@@ -38,16 +45,16 @@ paths:
               properties:
                 name:
                   type: string
-                  description: ''
-                  example: aspernatur
+                  description: 'The name of the  user.'
+                  example: testuser
                 email:
                   type: string
-                  description: ''
-                  example: eaque
+                  description: 'The email of the  user.'
+                  example: testuser@example.com
                 password:
                   type: string
-                  description: ''
-                  example: modi
+                  description: 'The password of the  user.'
+                  example: secret
               required:
                 - name
                 - email
@@ -85,11 +92,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: quos
+                  example: impedit
                 password:
                   type: string
                   description: ''
-                  example: dolor
+                  example: corrupti
               required:
                 - email
                 - password
@@ -193,7 +200,7 @@ paths:
       tags:
         - 'Influencer management'
       requestBody:
-        required: false
+        required: true
         content:
           multipart/form-data:
             schema:
@@ -202,31 +209,51 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: vel
+                  example: illo
                 email:
                   type: string
                   description: ''
-                  example: et
+                  example: ut
                 password:
                   type: string
                   description: ''
-                  example: praesentium
+                  example: voluptate
                 picture:
                   type: string
                   format: binary
                   description: ''
-                Country:
+                country:
                   type: string
                   description: ''
-                  example: ipsa
-                Age:
+                  example: aut
+                categories:
+                  type: string
+                  description: ''
+                  example: totam
+                interesting:
+                  type: string
+                  description: ''
+                  example: rem
+                age:
                   type: string
                   description: ''
                   example: aut
                 phone_number:
                   type: string
                   description: ''
-                  example: nobis
+                  example: unde
+                Country:
+                  type: string
+                  description: ''
+                  example: repellendus
+                Age:
+                  type: string
+                  description: ''
+                  example: alias
+              required:
+                - country
+                - categories
+                - age
   '/api/Influencer/{id}':
     get:
       summary: 'show  Influencer'
@@ -276,12 +303,12 @@ paths:
           in: query
           name: picture
           description: file
-          example: est
+          example: blanditiis
           required: false
           schema:
             type: string
             description: file
-            example: est
+            example: blanditiis
         -
           in: header
           name: Authorization
@@ -316,31 +343,31 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: dolores
+                  example: vitae
                 email:
                   type: string
                   description: ''
-                  example: ipsam
+                  example: dolorum
                 password:
                   type: string
                   description: ''
-                  example: vero
+                  example: dolores
                 picture:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: est
                 Country:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: eligendi
                 Age:
                   type: string
                   description: ''
-                  example: alias
+                  example: voluptatum
                 phone_number:
                   type: string
                   description: ''
-                  example: sit
+                  example: ut
               required:
                 - picture
     delete:
@@ -376,7 +403,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the Influencer.'
-        example: 6
+        example: 11
         required: true
         schema:
           type: integer
@@ -456,10 +483,10 @@ paths:
             schema:
               type: object
               properties:
-                services:
+                service:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: exercitationem
   '/api/Service/{id}':
     get:
       summary: 'show  Service'
@@ -539,7 +566,7 @@ paths:
                 services:
                   type: string
                   description: ''
-                  example: nisi
+                  example: repudiandae
     delete:
       summary: 'destroy Service'
       description: ''
@@ -573,7 +600,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the Service.'
-        example: 13
+        example: 20
         required: true
         schema:
           type: integer
@@ -616,7 +643,47 @@ paths:
                 stories:
                   type: string
                   description: ''
-                  example: quas
+                  example: doloremque
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - 'Story  management'
   '/api/Story/{id}':
     get:
       summary: 'show  story'
@@ -691,7 +758,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the Story.'
-        example: 2
+        example: 14
         required: true
         schema:
           type: integer
@@ -744,22 +811,22 @@ paths:
           in: query
           name: status
           description: ''
-          example: quo
+          example: reprehenderit
           required: false
           schema:
             type: string
             description: ''
-            example: quo
+            example: reprehenderit
         -
           in: query
           name: price
           description: ''
-          example: ea
+          example: molestiae
           required: false
           schema:
             type: string
             description: ''
-            example: ea
+            example: molestiae
         -
           in: header
           name: Authorization
@@ -794,19 +861,19 @@ paths:
                 user_id:
                   type: string
                   description: ''
-                  example: similique
+                  example: alias
                 influencer_id:
                   type: string
                   description: ''
-                  example: explicabo
+                  example: quod
                 service_id:
                   type: string\
                   description: ''
-                  example: qui
+                  example: illo
                 payment_method:
                   type: string
                   description: ''
-                  example: voluptates
+                  example: sit
   '/api/Ticket/{id}':
     get:
       summary: 'show  Ticket'
@@ -886,7 +953,7 @@ paths:
                 status:
                   type: string
                   description: ''
-                  example: soluta
+                  example: doloribus
     delete:
       summary: 'destroy ticket'
       description: ''
@@ -920,7 +987,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the Ticket.'
-        example: 5
+        example: 8
         required: true
         schema:
           type: integer
