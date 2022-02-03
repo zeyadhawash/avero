@@ -12,7 +12,11 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\BelongsToMany;
 use NovaItemsField\Items;
 use Laravel\Nova\Fields\Password;
-//use Halimtuhu\ArrayImages\ArrayImages;
+use Halimtuhu\ArrayImages\ArrayImages;
+use App\Nova\Lenses\MostFollowersInfluencers;
+use App\Nova\Lenses\AgeInfluencers;
+use App\Nova\Lenses\MostReachInfluencers;
+use App\Nova\Filters\InfluencerCountrie;
 class Influencer extends Resource
 {
     /**
@@ -64,15 +68,16 @@ class Influencer extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-                File::make('picture','picture'),
-            Text::make('Country','Country')->showOnIndex(),
 
+                File::make('picture','picture'),
+
+            BelongsTo::make('Countrie'),
             Text::make('Reach','Reach')->onlyOnIndex(),
             Text::make('Following','Following')->onlyOnIndex(),
             Number::make('Age','Age')->showOnIndex(),
             Text::make('phone_number','phone_number'),
             BelongsToMany::make('Service'),
-          //  ArrayImages::make('photos', 'photos')->disk('public')->path('public/uploads/Influence/'),
+           ArrayImages::make('photos', 'photos')->disk('public')->path('app'),
         ];
     }
 
@@ -95,7 +100,10 @@ class Influencer extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+
+            new InfluencerCountrie,
+        ];
     }
 
     /**
@@ -106,7 +114,12 @@ class Influencer extends Resource
      */
     public function lenses(Request $request)
     {
-        return [];
+        return [
+     new MostFollowersInfluencers,
+     new AgeInfluencers,
+     new MostReachInfluencers,
+
+        ];
     }
 
     /**

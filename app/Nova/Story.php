@@ -46,7 +46,7 @@ class Story extends Resource
             ID::make(__('ID'), 'id')->sortable(),
         //    BelongsTo::make('influencer'),
             File::make('stories','stories'),
-            Number::make('Views','Views')->showOnIndex(),
+            Number::make('Views','Views')->onlyOnIndex(),
 
         ];
     }

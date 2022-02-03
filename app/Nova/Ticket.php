@@ -9,6 +9,11 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Number;
+use App\Nova\Actions\Processing;
+use App\Nova\Actions\AwaitingPayment;
+use App\Nova\Actions\done;
+use App\Nova\Actions\preparation;
+use App\Nova\Filters\status;
 class Ticket extends Resource
 {
     /**
@@ -49,7 +54,7 @@ class Ticket extends Resource
              BelongsTo::make('User'),
              Text::make('status','status')->onlyOnIndex(),
              Number::make('price','price')->showOnIndex(),
-             Select::make('payment_method')->options([
+             Select::make('payment_method','payment_method')->options([
                 'cash' => 'cash Money',
                 'cards' => 'cards',
                 'Bank' => 'Bank transfer',
@@ -79,7 +84,10 @@ class Ticket extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+
+            new status
+        ];
     }
 
     /**
@@ -101,6 +109,13 @@ class Ticket extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+
+            new Processing,
+            new AwaitingPayment,
+            new preparation,
+            new done
+
+        ];
     }
 }

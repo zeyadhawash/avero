@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 class Influencer extends Model
 {
     use HasFactory;
@@ -37,5 +38,20 @@ class Influencer extends Model
     {
         return $this->belongsToMany('App\Models\Ticket' ,"influencer_id");
     }
+
+    public function Countrie()
+    {
+        return $this->belongsTo('App\Models\Countrie','Country' );
+    }
+
+
+
+    public function Countrys()
+
+    {
+        return $this->belongsTo('App\Models\Countrys', 'Country' );
+    }
+
+
 
 }

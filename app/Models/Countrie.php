@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Story extends Model
+class Countrie extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'influencer_id','stories','Views',];
-
+    protected $fillable = [ 'countrie_name', ];
     public function Influencer()
     {
-        return $this->belongsTo('App\Models\Influencer','influencer_id' );
+        return $this->belongsToMany('App\Models\Influencer' );
     }
-
-
 }
